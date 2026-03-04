@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Insurance Compliance Platform</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Vendor Insurance Compliance Platform</h1>
+      <p>
+        Classify vendor risk, define insurance requirements, request COIs, analyze
+        submitted COIs, and track compliance status in one dashboard.
+      </p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>1) Vendor Intake & Risk Classification</h2>
+        <form id="vendor-form" class="grid-form">
+          <label>
+            Vendor Name
+            <input type="text" id="vendorName" required />
+          </label>
+          <label>
+            Service Type
+            <select id="serviceType" required>
+              <option value="">Select a service</option>
+              <option>Landscaping</option>
+              <option>Janitorial</option>
+              <option>Security</option>
+              <option>HVAC / Plumbing</option>
+              <option>Roofing / Structural</option>
+              <option>Elevator Maintenance</option>
+              <option>Snow Removal</option>
+              <option>General Contractor</option>
+            </select>
+          </label>
+          <label>
+            Contact Email
+            <input type="email" id="vendorEmail" required />
+          </label>
+          <button type="submit">Create Vendor Profile</button>
+        </form>
+
+        <div id="risk-output" class="result hidden"></div>
+      </section>
+
+      <section class="panel hidden" id="requirements-panel">
+        <h2>2) Insurance Requirements & COI Sample</h2>
+        <div id="requirements-output" class="result"></div>
+        <h3>COI Sample</h3>
+        <pre id="coi-sample" class="result"></pre>
+      </section>
+
+      <section class="panel hidden" id="initial-email-panel">
+        <h2>3) Initial COI Request Email</h2>
+        <textarea id="initial-email" rows="10" readonly></textarea>
+      </section>
+
+      <section class="panel hidden" id="analyzer-panel">
+        <h2>4) Analyze Submitted COI</h2>
+        <form id="coi-form" class="grid-form">
+          <label>
+            General Liability - Each Occurrence ($)
+            <input type="number" id="glOccurrence" min="0" step="50000" required />
+          </label>
+          <label>
+            Auto Liability - Combined Single Limit ($)
+            <input type="number" id="autoLiability" min="0" step="50000" required />
+          </label>
+          <label>
+            Workers' Comp Included?
+            <select id="workersComp" required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </label>
+          <label>
+            Umbrella / Excess Liability ($)
+            <input type="number" id="umbrella" min="0" step="50000" required />
+          </label>
+          <label>
+            Policy Expiration Date
+            <input type="date" id="expiration" required />
+          </label>
+          <button type="submit">Analyze COI</button>
+        </form>
+        <div id="analysis-output" class="result hidden"></div>
+      </section>
+
+      <section class="panel hidden" id="status-email-panel">
+        <h2>5) Vendor Compliance Notification Email</h2>
+        <textarea id="status-email" rows="12" readonly></textarea>
+      </section>
+
+      <section class="panel">
+        <h2>6) Compliance Dashboard</h2>
+        <table id="dashboard-table">
+          <thead>
+            <tr>
+              <th>Vendor</th>
+              <th>Service</th>
+              <th>Risk</th>
+              <th>COI Status</th>
+              <th>Expiration</th>
+              <th>Deficiencies</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
